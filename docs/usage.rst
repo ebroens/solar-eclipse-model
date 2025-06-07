@@ -95,3 +95,4 @@ For details on running the full MCMC fitting pipeline using the
 `model_eclipse_mcmc.py` script, including command-line options and analysis
 of typical outputs (like corner plots and data-model comparisons), please
 refer to the :doc:`examples` section.
+
