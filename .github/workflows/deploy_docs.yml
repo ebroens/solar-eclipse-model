@@ -46,52 +46,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs/_build/html  # This is where your compiled docs are
         publish_branch: gh-pages      # Deploy to the 'gh-pages' branch
-
-B
-B
-B
-B
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
         # cname: example.com          # Uncomment and set if you use a custom domain
+
