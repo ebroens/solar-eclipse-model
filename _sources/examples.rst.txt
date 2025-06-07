@@ -18,14 +18,13 @@ fit summaries and plots.
 
 **Running the Script:**
 
-You should execute `model_eclipse_mcmc.py` from the root directory of the repository.
+Execute `model_eclipse_mcmc.py` from the root directory of the repository.
 It accepts command-line arguments to specify the configuration file and
 which model(s) to run.
 
 .. code-block:: bash
 
     # To run a specific model (e.g., the 'linear' limb darkening model)
-    # Ensure you are in the project root directory (e.g., ~/SolarEclipsModel/with_gemini_docs/)
     python model_eclipse_mcmc.py --config config/config.yaml --model linear
 
     # To run all models defined in the config.yaml

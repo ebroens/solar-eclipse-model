@@ -257,11 +257,10 @@ root directory of the repository. This script reads configuration from a YAML fi
 executes the MCMC sampling, and generates various output files including
 fit summaries and plots.</p>
 <p><strong>Running the Script:</strong></p>
-<p>You should execute <cite>model_eclipse_mcmc.py</cite> from the root directory of the repository.
+<p>Execute <cite>model_eclipse_mcmc.py</cite> from the root directory of the repository.
 It accepts command-line arguments to specify the configuration file and
 which model(s) to run.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># To run a specific model (e.g., the &#39;linear&#39; limb darkening model)</span>
-<span class="c1"># Ensure you are in the project root directory (e.g., ~/SolarEclipsModel/with_gemini_docs/)</span>
 python<span class="w"> </span>model_eclipse_mcmc.py<span class="w"> </span>--config<span class="w"> </span>config/config.yaml<span class="w"> </span>--model<span class="w"> </span>linear
 
 <span class="c1"># To run all models defined in the config.yaml</span>
