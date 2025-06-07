@@ -26,11 +26,14 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x' # Use a compatible Python version, e.g., '3.8', '3.9', '3.10', '3.11'
+        # Use a slightly older but very stable Python version like 3.9 or 3.10
+        # to avoid cutting-edge compatibility issues if your dependencies are old.
+        # Or, if you need 3.11+, explicitly upgrade setuptools/wheel.
+        python-version: '3.9' # Changed from '3.x' to a specific stable version
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip setuptools wheel # Explicitly upgrade setuptools and wheel
         # If you use requirements.in with pip-tools, generate requirements.txt first
         pip install pip-tools
         pip-compile requirements.in
