@@ -14,6 +14,10 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions: # Permissions need to be at the same level as 'runs-on'
+      contents: write # Give write access to contents
+      pages: write    # Give write access to pages (needed for newer GHP)
+      id-token: write # Give id-token write access (needed for newer GHP, for OIDC)
 
     steps:
     - name: Checkout code
