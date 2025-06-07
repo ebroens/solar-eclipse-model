@@ -1,0 +1,558 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="API Reference" href="api.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+        <title>Examples and Tutorials - Solar Eclipse Model 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Solar Eclipse Model 0.1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Solar Eclipse Model 0.1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Examples and Tutorials</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/examples.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="examples-and-tutorials">
+<span id="examples"></span><h1>Examples and Tutorials<a class="headerlink" href="#examples-and-tutorials" title="Permalink to this heading">¶</a></h1>
+<p>This section provides detailed examples and tutorials demonstrating the full workflow
+of the Solar Eclipse Model, particularly focusing on the MCMC fitting
+pipeline and its configuration.</p>
+<section id="full-mcmc-analysis-workflow-with-model-eclipse-mcmc-py">
+<h2>Full MCMC Analysis Workflow with <cite>model_eclipse_mcmc.py</cite><a class="headerlink" href="#full-mcmc-analysis-workflow-with-model-eclipse-mcmc-py" title="Permalink to this heading">¶</a></h2>
+<p>The primary script for performing MCMC (Markov Chain Monte Carlo) analysis
+on solar eclipse light curves is <cite>model_eclipse_mcmc.py</cite>, located in the
+root directory of the repository. This script reads configuration from a YAML file,
+executes the MCMC sampling, and generates various output files including
+fit summaries and plots.</p>
+<p><strong>Running the Script:</strong></p>
+<p>You should execute <cite>model_eclipse_mcmc.py</cite> from the root directory of the repository.
+It accepts command-line arguments to specify the configuration file and
+which model(s) to run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># To run a specific model (e.g., the &#39;linear&#39; limb darkening model)</span>
+<span class="c1"># Ensure you are in the project root directory (e.g., ~/SolarEclipsModel/with_gemini_docs/)</span>
+python<span class="w"> </span>model_eclipse_mcmc.py<span class="w"> </span>--config<span class="w"> </span>config/config.yaml<span class="w"> </span>--model<span class="w"> </span>linear
+
+<span class="c1"># To run all models defined in the config.yaml</span>
+python<span class="w"> </span>model_eclipse_mcmc.py<span class="w"> </span>--config<span class="w"> </span>config/config.yaml<span class="w"> </span>--model<span class="w"> </span>all
+</pre></div>
+</div>
+<p><strong>Configuration (`config.yaml`):</strong></p>
+<p>The <cite>config.yaml</cite> file is central to controlling the behavior of the
+<cite>model_eclipse_mcmc.py</cite> script. It defines data paths, MCMC fitting
+parameters, and plotting configurations. This file is located in the
+<cite>config/</cite> directory.</p>
+<p>It is divided into two main sections: <cite>common</cite> and <cite>models</cite>.</p>
+<ul>
+<li><p><strong>`common`</strong>: Global settings that apply across all model runs.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>output_dir</cite> (string): Directory where all results (MCMC chains, plots, fit summaries) will be saved.</p></li>
+<li><p><cite>data_file</cite> (string): File containing observational measurements. This file is expected to be space-delimited with comments starting with <cite>#</cite>.</p></li>
+<li><p><cite>date_column</cite> (string): The header name of the column in <cite>data_file</cite> that contains the date component of the observations.</p></li>
+<li><p><cite>time_column</cite> (string): The header name of the column in <cite>data_file</cite> that contains the time component of the observations.</p></li>
+<li><p><cite>flux_column</cite> (string): The header name of the column in <cite>data_file</cite> that contains the (normalized) flux to be modeled.</p></li>
+<li><p><cite>color_channel</cite> (string): A single character (e.g., ‘G’ for green) used in filenames and plot labels to denote the color channel of the observations.</p></li>
+<li><p><cite>sigma_data</cite> (float): The estimated accuracy (standard deviation) of the measured flux data.</p></li>
+<li><dl class="simple">
+<dt><cite>plot_config</cite> (dictionary): Configuration settings specifically for generating plots.</dt><dd><ul>
+<li><p><cite>plot_color</cite> (string): Matplotlib color string for the main data plot (e.g., ‘green’, ‘k’).</p></li>
+<li><p><cite>plot_marker_symbol</cite> (string): Matplotlib marker symbol for the main data plot (e.g., ‘.’, ‘o’).</p></li>
+<li><p><cite>plot_range</cite> (dictionary): Dictionary of the plotting time range (start_datetime, end_datetime) in “YYYY-MM-DD HH:MM:SS” format.</p></li>
+<li><p><cite>eclipse_times</cite> (dictionary): Dictionary of eclipse contact times (tc1, tc2, tc3, tc4) in “YYYY-MM-DD HH:MM:SS” format. These are used for plotting shaded regions on the light curve. <cite>tc2</cite> and <cite>tc3</cite> can be removed or commented out for partial eclipses.</p></li>
+<li><dl class="simple">
+<dt><cite>inset</cite> (dictionary): Configuration for an inset plot within the main light curve plot.</dt><dd><ul>
+<li><p><cite>enabled</cite> (boolean): <cite>true</cite> to enable the inset, <cite>false</cite> to disable.</p></li>
+<li><p><cite>loc</cite> (string): Location of the inset (‘lower left’, ‘upper right’, etc.).</p></li>
+<li><p><cite>width</cite> (string): Width of the inset (e.g., “80%”).</p></li>
+<li><p><cite>height</cite> (string): Height of the inset (e.g., “80%”).</p></li>
+<li><p><cite>bbox_to_anchor</cite> (list of floats): Bounding box for the inset axes (x, y, width, height) in normalized coordinates.</p></li>
+<li><p><cite>bbox_transform</cite> (string): Transformation for <cite>bbox_to_anchor</cite> (‘axes’, ‘figure’, ‘data’).</p></li>
+<li><p><cite>x_lim</cite> (list of strings): X-axis limits for the inset plot (e.g., [“2019-07-02 20:35:00”, “2019-07-02 20:45:00”]).</p></li>
+<li><p><cite>y_lim</cite> (list of floats): Y-axis limits for the inset plot (e.g., [-0.02, 0.05]).</p></li>
+<li><p><cite>mark_inset_loc</cite> (list of ints): Corners to use for connecting the inset axes and the area in the parent axes (e.g., [1, 3]).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>`models`</strong>: Definitions for different eclipse models, each with its own specific parameters and fitting configuration. Each key under <cite>models</cite> (e.g., <cite>linear</cite>, <cite>quadratic</cite>, <cite>uniform</cite>) represents a distinct model variant.</p>
+<blockquote>
+<div><p>For each model (e.g., <cite>linear</cite>, <cite>quadratic</cite>, <cite>uniform</cite>):</p>
+<ul class="simple">
+<li><p><cite>limb_dark</cite> (string): The limb darkening law to use (‘linear’, ‘quadratic’, ‘uniform’).</p></li>
+<li><p><cite>moon_radius</cite> (float): The radius of the Moon in units of the Sun’s radius.</p></li>
+<li><p><cite>atm_ext</cite> (float): The atmospheric extinction coefficient.</p></li>
+<li><p><cite>u</cite> (list of floats): Limb darkening coefficients. The number of elements depends on the <cite>limb_dark</cite> law (e.g., <cite>[u1]</cite> for linear, <cite>[u1, u2]</cite> for quadratic, <cite>[]</cite> for uniform).</p></li>
+<li><p><cite>lat</cite> (float): Latitude of the observer in degrees.</p></li>
+<li><p><cite>lon</cite> (float): Longitude of the observer in degrees.</p></li>
+<li><dl class="simple">
+<dt><cite>fit_params</cite> (dictionary): Parameters to be fitted by the MCMC sampler, along with their priors and plotting labels. Each entry in <cite>fit_params</cite> is a parameter name (e.g., <cite>u1</cite>, <cite>u2</cite>, <cite>atm_ext</cite>, <cite>moon_radius</cite>, <cite>log_sigma_jitter</cite>).</dt><dd><ul>
+<li><p><cite>prior</cite> (list of floats): The lower and upper bounds for the uniform prior distribution of the parameter. For <cite>log_sigma_jitter</cite>, these values will be converted to log scale internally.</p></li>
+<li><p><cite>plot_label</cite> (string): The LaTeX-formatted label to use for this parameter in plots (e.g., corner plots). Use <cite>{{color_channel}}</cite> as a placeholder for the <cite>color_channel</cite> defined in the <cite>common</cite> section.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>plotting</cite> (dictionary): Model-specific plotting configurations for the <cite>plot_data_and_model</cite> function.</dt><dd><ul>
+<li><p><cite>color</cite> (string): Matplotlib color string for this model’s light curve line (e.g., ‘k’, ‘green’).</p></li>
+<li><p><cite>line_style</cite> (string): Matplotlib line style for this model’s light curve line (e.g., ‘-’, ‘–‘).</p></li>
+<li><p><cite>residuals_marker</cite> (string): Matplotlib marker symbol for this model’s residuals (e.g., ‘.’, ‘+’).</p></li>
+<li><p><cite>model_label</cite> (string): Label for this model to appear in the plot legend.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Output and Results:</strong></p>
+<p>When <cite>model_eclipse_mcmc.py</cite> is executed, it generates various output files in the directory specified by <cite>output_dir</cite> in your <cite>config.yaml</cite> (defaulting to <cite>./results/</cite>).</p>
+<p>These outputs typically include:</p>
+<ul class="simple">
+<li><p><strong>MCMC Fit Summary CSVs:</strong> Files like <cite>mcmc_fit_results_linear_G_YYYYMMDD.csv</cite> providing statistical summaries (median, 1-sigma credible intervals) for the fitted parameters.</p></li>
+<li><p><strong>Corner Plots:</strong> PNG images (e.g., <cite>corner_plot_linear_G_YYYYMMDD.png</cite>) visualizing the marginalized posterior distributions of the fitted parameters.</p></li>
+<li><p><strong>Data-Model Comparison Plots:</strong> PNG images (e.g., <cite>model_fit_G_YYYYMMDD.png</cite>) showing the observed data, the best-fit model light curve, and the residuals.</p></li>
+<li><p><strong>Sampler State (Optional):</strong> Pickled sampler objects (<cite>sampler_MODELNAME.pkl</cite>) if <cite>save_data</cite> is enabled in <cite>run_sampler</cite>.</p></li>
+</ul>
+<p>To illustrate, here is an example plot generated by a typical run of the <cite>uniform LD, linear LD and linear LD with the moon to sun ratio fixed models</cite> on observations of the total solar eclipse of 2019 in Chile. This plot shows the normalized observed flux alongside the best-fit model light curve,
+including residuals in the lower panel. The shaded regions indicate the partial and total eclipse phases. Notice how the model accurately captures the light curve morphology during the eclipse.
+At first sight the light curve looks strange, with an ascending branch that does not reach the full brightness again. This is caused by the atmospheric extinction. The sun was only 1* above the horizon at 4th contact and hence appeared much fainter than at first contact which occured at an altitude of 25°.</p>
+<a class="with-shadow reference internal image-reference" href="_images/model_fit_G_20250517.png"><img alt="Data-Model Comparison Plot (Example)" class="with-shadow align-center" src="_images/model_fit_G_20250517.png" style="width: 700px;" /></a>
+<p>The next plot is a corner plot for fitted parameters (e.g., limb darkening coefficient, atmospheric extinction,
+and moon radius) for the <cite>linear LD</cite> model. The histograms on the diagonals show the 1D posteriors,
+and the scatter plots show the 2D correlations between parameters. The vertical
+lines indicate the median and 1-sigma credible intervals which still underestimate the true errors.</p>
+<a class="with-shadow reference internal image-reference" href="_images/corner_plot_linear_G_20250517.png"><img alt="Corner Plot for Linear Model Parameters (Example)" class="with-shadow align-center" src="_images/corner_plot_linear_G_20250517.png" style="width: 700px;" /></a>
+</section>
+<section id="script-internal-details">
+<h2>Script Internal Details<a class="headerlink" href="#script-internal-details" title="Permalink to this heading">¶</a></h2>
+<p>This section provides API-level documentation for the functions within the
+<cite>model_eclipse_mcmc.py</cite> script. While this script primarily serves as an
+example workflow, its functions can be individually inspected.</p>
+<span class="target" id="module-model_eclipse_mcmc"></span><p>model_eclipse_mcmc.py</p>
+<p>Main script to run MCMC fitting for solar eclipse light curve models.
+Supports YAML configuration, CLI arguments, and multi-model comparisons.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="model_eclipse_mcmc.load_config">
+<span class="sig-prename descclassname"><span class="pre">model_eclipse_mcmc.</span></span><span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_eclipse_mcmc.html#load_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_eclipse_mcmc.load_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load configuration YAML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_file</strong> (<em>str</em>) – Path to the YAML configuration file (e.g., ‘config.yaml’).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the loaded configuration.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_eclipse_mcmc.create_params">
+<span class="sig-prename descclassname"><span class="pre">model_eclipse_mcmc.</span></span><span class="sig-name descname"><span class="pre">create_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_datetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_eclipse_mcmc.html#create_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_eclipse_mcmc.create_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a SolarEclipsParams object from a model configuration dictionary.</p>
+<p>This function initializes a SolarEclipsParams object and populates its
+attributes based on the provided model configuration and observed timestamps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_config</strong> (<em>dict</em>) – A dictionary containing the configuration for a single model, typically
+from the ‘models’ section of the <cite>config.yaml</cite> file.</p></li>
+<li><p><strong>obs_datetime</strong> (<em>array-like</em>) – Observation timestamps, expected to be in a format convertible to
+datetime64 (e.g., numpy array of datetimes or pandas Timestamp series).
+These times are used to set the <cite>obs_datetime</cite> attribute of the
+SolarEclipsParams object for fixed-time light curve generation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An initialized SolarEclipsParams object with attributes set according
+to the model configuration.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SolarEclipsParams</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_eclipse_mcmc.make_setter">
+<span class="sig-prename descclassname"><span class="pre">model_eclipse_mcmc.</span></span><span class="sig-name descname"><span class="pre">make_setter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_eclipse_mcmc.html#make_setter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_eclipse_mcmc.make_setter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a setter function for updating SolarEclipsParams attributes.</p>
+<p>This function dynamically creates a callable that sets a specific parameter
+on a <cite>SolarEclipsParams</cite> object. It handles special cases for limb
+darkening coefficients (<cite>u1</cite>, <cite>u2</cite>, etc.) and ‘log_’ prefixed parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>label</strong> (<em>str</em>) – The name of the parameter for which to create a setter (e.g., ‘u1’,
+‘atm_ext’, ‘log_sigma_jitter’).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A lambda function <code class="docutils literal notranslate"><span class="pre">(params,</span> <span class="pre">val)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code> that sets the specified
+parameter <code class="docutils literal notranslate"><span class="pre">val</span></code> on the <code class="docutils literal notranslate"><span class="pre">params</span></code> object. Returns a no-op function
+for ‘log_’ prefixed labels as they are handled differently during MCMC.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_eclipse_mcmc.build_fit_config">
+<span class="sig-prename descclassname"><span class="pre">model_eclipse_mcmc.</span></span><span class="sig-name descname"><span class="pre">build_fit_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_eclipse_mcmc.html#build_fit_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_eclipse_mcmc.build_fit_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the MCMC fitting configuration dictionary from a model’s definition.</p>
+<p>This function processes the <code class="docutils literal notranslate"><span class="pre">fit_params</span></code> section of a model’s configuration
+to create a structured dictionary used by the MCMC sampler. It includes
+priors, a setter function for each parameter, and a plotting label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_config</strong> (<em>dict</em>) – A dictionary representing a single model’s configuration, typically
+from the ‘models’ section of the <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file. It must contain
+a ‘fit_params’ key.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>A dictionary where keys are parameter labels (e.g., ‘u1’, ‘atm_ext’)
+and values are dictionaries containing:</p>
+<ul class="simple">
+<li><p>’prior’ (tuple): A tuple (lower_bound, upper_bound) for the uniform
+prior. For ‘log_’ prefixed parameters, these bounds are already in log space.</p></li>
+<li><p>’setter’ (callable): A function that sets the parameter on a
+<cite>SolarEclipsParams</cite> object.</p></li>
+<li><p>’plot_label’ (str): The LaTeX-formatted label for plotting this parameter.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_eclipse_mcmc.main">
+<span class="sig-prename descclassname"><span class="pre">model_eclipse_mcmc.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_eclipse_mcmc.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_eclipse_mcmc.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main entry point for the solar eclipse MCMC fitting tool.</p>
+<p>This function handles command-line argument parsing, loads the configuration
+from a YAML file, loads observational data, runs the MCMC sampler for the
+specified models, summarizes the fitting results, and generates output plots.</p>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="api.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">API Reference</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Eric Broens
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Examples and Tutorials</a><ul>
+<li><a class="reference internal" href="#full-mcmc-analysis-workflow-with-model-eclipse-mcmc-py">Full MCMC Analysis Workflow with <cite>model_eclipse_mcmc.py</cite></a></li>
+<li><a class="reference internal" href="#script-internal-details">Script Internal Details</a><ul>
+<li><a class="reference internal" href="#model_eclipse_mcmc.load_config"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+<li><a class="reference internal" href="#model_eclipse_mcmc.create_params"><code class="docutils literal notranslate"><span class="pre">create_params()</span></code></a></li>
+<li><a class="reference internal" href="#model_eclipse_mcmc.make_setter"><code class="docutils literal notranslate"><span class="pre">make_setter()</span></code></a></li>
+<li><a class="reference internal" href="#model_eclipse_mcmc.build_fit_config"><code class="docutils literal notranslate"><span class="pre">build_fit_config()</span></code></a></li>
+<li><a class="reference internal" href="#model_eclipse_mcmc.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=2389946f"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
+</html>
