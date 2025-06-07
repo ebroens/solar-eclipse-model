@@ -1,0 +1,25 @@
+# requirements.in
+# This file lists the direct top-level dependencies of the project.
+# Use 'pip-compile requirements.in' to generate a fully pinned requirements.txt.
+
+# Core scientific computing libraries
+numpy
+pandas
+matplotlib
+astropy
+
+# MCMC and related libraries
+emcee
+dill
+corner
+
+# Eclipse modeling library
+batman-package
+
+# Configuration file parsing
+pyyaml
+
+# Documentation build dependencies
+sphinx
+furo
+sphinx-rtd-theme
