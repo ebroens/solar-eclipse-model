@@ -13,7 +13,7 @@ First, ensure you have the necessary dependencies installed. It is recommended t
 .. code-block:: bash
 
     # Clone the repository
-    git clone https://github.com/your-username/solar-eclipse-model.git
+    git clone https://github.com/ebroens/solar-eclipse-model.git
     cd solar-eclipse-model
 
     # Create and activate a virtual environment
