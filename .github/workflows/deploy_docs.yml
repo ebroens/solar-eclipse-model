@@ -32,7 +32,7 @@ jobs:
     - name: Install system dependencies for Matplotlib
       run: |
         sudo apt-get update
-        sudo apt-get install -y libatlas-base-dev libpng-dev libfreetype6-dev zlib1g-dev
+        sudo apt-get install -y libatlas-base-dev libpng-dev libfreetype6-dev zlib1g-dev texlive-latex-base
 
     - name: Install Python dependencies
       run: |
