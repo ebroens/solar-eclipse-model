@@ -3,6 +3,16 @@
 import os
 import sys
 
+# Force matplotlib to use a non-interactive backend for headless environments like GitHub Actions
+import matplotlib
+matplotlib.use('Agg')
+
+# Optional: Sphinx plot directive settings (helps with clarity and consistency in HTML output)
+plot_html_show_formats = False
+plot_html_show_source_link = True
+plot_rcparams = {'savefig.dpi': 150}
+
+
 # Adjust this path to point to your project's root.
 # Assuming 'docs' folder is directly inside the project root.
 sys.path.insert(0, os.path.abspath('../')) 
