@@ -21,7 +21,7 @@ First, ensure you have the necessary dependencies installed. It is recommended t
     source venv_name/bin/activate # On Windows: .\venv_name\Scripts\activate
 
     # Install run-time dependencies
-    pip install numpy pandas matplotlib astropy emcee corner pyyaml batman-package dill
+    pip install numpy pandas matplotlib astropy jplephem emcee corner pyyaml batman-package dill
 
     # Install for documentation generation (optionally)
     pip install sphinx sphinx-rtd-theme furo
