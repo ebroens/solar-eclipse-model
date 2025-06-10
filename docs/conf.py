@@ -90,7 +90,7 @@ html_theme = 'furo' # A modern, responsive theme. You can also use 'sphinx_rtd_t
 html_static_path = ['_static']
 
 # You can add a logo
-# html_logo = "_static/your_logo.png"
+html_logo = "_static/logo.png"
 
 # -- Options for Autodoc -----------------------------------------------------
 autodoc_default_options = {
